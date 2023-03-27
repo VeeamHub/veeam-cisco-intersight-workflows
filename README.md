@@ -1,4 +1,4 @@
-# Cisco Intersight Orchestrator Sample Workflows
+# Cisco Intersight Cloud Orchestrator Sample Workflows
 
 _Provide brief description of Cisco Intersight Orchestrator._
 
