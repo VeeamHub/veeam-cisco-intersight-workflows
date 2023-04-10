@@ -6,7 +6,7 @@ _Provide brief description of what is contained in this repository._
 
 ## 📗 Documentation
 
-_Place documentation or links to documentation here._
+_Place documentation or links to Cisco community documentation here._
 
 ## ✍ Contributions
 
