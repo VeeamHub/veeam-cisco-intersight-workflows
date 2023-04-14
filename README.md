@@ -30,8 +30,8 @@ Setup:
 * Next, VBR server(s) need to be "claimed" as authorized targets for PowerShell "executor" orchestration access. Prepare the target VBR instance(s) by copying and executing the PowerShell script located at [Executors - Invoke PowerShell Script](https://intersight.com/help/saas/resources/Executor_PowerShell#supported_targets) to grant the necessary WinRM remoting permissions. 
 * VBR server(s) can then be claimed via the procedure outlined at [Target Claim Using Intersight Assist](https://intersight.com/help/saas/getting_started/claim_targets#target_claim_using_intersight_assist)
 * Sample workflows are located in the "Sample Workflows" folder of this repository and should be downloaded and imported via the Intersight console.  Note that orchestration workflow tasks are embedded in the workflows and will also populate new Intersight tasks concurrent with the workflow import. Two workflows are provided for reference -
-  * VBR - Deploy Agents
-  * VBR - Deploy Proxy
+  * **VBR - Deploy Agents:** Takes inputs of target VBR server, IP addresses or DNS names for agent targets, agent target credentials (one set), OS platform (Windows or Linux), protection group name, protection group description, backup job name and VBR repository name.  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, next creates the protection group and adds the specified agent targets and finally creates a backup job for the protection group.
+  * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 Operation:
 * Creating custom tasks - samples provide a template
