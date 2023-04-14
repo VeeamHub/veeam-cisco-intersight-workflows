@@ -49,7 +49,7 @@ Operation:
   ```
 to -
 
-  * ```
+   * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
                     Write-Output "Adding windows host"
