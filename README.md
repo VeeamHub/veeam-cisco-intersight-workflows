@@ -29,8 +29,9 @@ Setup:
 * Once Cisco Intersight Assist has been deployed and configured it can be claimed per the procedure documented at - [Target Claim for Compute/Fabric, Hyperconverged, Orchestrator, and Platform Services Targets](https://www.intersight.com/help/saas/getting_started/claim_targets#minimum_permissions_for_targets) into the Intersight cloud service.  
 * Next, VBR server(s) need to be "claimed" as authorized targets for PowerShell "executor" orchestration access. Prepare the target VBR instance(s) by copying and executing the PowerShell script located at [Executors - Invoke PowerShell Script](https://intersight.com/help/saas/resources/Executor_PowerShell#supported_targets) to grant the necessary WinRM remoting permissions. 
 * VBR server(s) can then be claimed via the procedure outlined at [Target Claim Using Intersight Assist](https://intersight.com/help/saas/getting_started/claim_targets#target_claim_using_intersight_assist)
-* Sample workflows are located in the "Workflows" folder of this repository and should be downloaded and imported via the Intersight console.  Note that orchestration workflow tasks are embedded in the workflows and will also populate new Intersight tasks concurrent with the workflow import.
-
+* Sample workflows are located in the "Sample Workflows" folder of this repository and should be downloaded and imported via the Intersight console.  Note that orchestration workflow tasks are embedded in the workflows and will also populate new Intersight tasks concurrent with the workflow import. Two workflows are provided for reference -
+  * VBR - Deploy Agents
+  * VBR - Deploy Proxy
 
 Operation:
 * Creating custom tasks - samples provide a template
