@@ -26,15 +26,29 @@ Prerequisites:
 * Cisco Intersight Assist - on-premises server instance which enables visibility of datacenter endpoint devices for the Cisco Intersight Orchestration service. Cisco Intersight Assist is available as a virtual appliance (OVA) for installation on VMware ESXi. For more information, see the [Cisco Intersight Virtual Appliance Getting Started Guide](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-overview-of-cisco-intersight-assist.html). Virtual appliance installation steps can be found at [Installing Cisco Intersight using VMware vSphere Web Client](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-installing-cisco-intersight-assist.html) DO NOT ignore the DNS setup steps.
 
 Setup: 
-* Once Cisco Intersight Assist has been deployed and configured it can be claimed per the procedure documented at - [Target Claim for Compute/Fabric, Hyperconverged, Orchestrator, and Platform Services Targets](https://www.intersight.com/help/saas/getting_started/claim_targets#minimum_permissions_for_targets) into the Intersight cloud service.  
+* Once Cisco Intersight Assist has been deployed and configured it can be by claimed by the Intersight cloud service per the procedure documented at - [Target Claim for Compute/Fabric, Hyperconverged, Orchestrator, and Platform Services Targets](https://www.intersight.com/help/saas/getting_started/claim_targets#minimum_permissions_for_targets).  
 * Next, VBR server(s) need to be "claimed" as authorized targets for PowerShell "executor" orchestration access. Prepare the target VBR instance(s) by copying and executing the PowerShell script located at [Executors - Invoke PowerShell Script](https://intersight.com/help/saas/resources/Executor_PowerShell#supported_targets) to grant the necessary WinRM remoting permissions. 
 * VBR server(s) can then be claimed via the procedure outlined at [Target Claim Using Intersight Assist](https://intersight.com/help/saas/getting_started/claim_targets#target_claim_using_intersight_assist)
-* Sample workflows are located in the "Sample Workflows" folder of this repository and should be downloaded and imported via the Intersight console.  Note that orchestration workflow tasks are embedded in the workflows and will also populate new Intersight tasks concurrent with the workflow import. Two workflows are provided for reference -
-  * **VBR - Deploy Agents:** Takes inputs of target VBR server, IP addresses or DNS names for agent targets, agent target credentials (one set), OS platform (Windows or Linux), protection group name, protection group description, backup job name and VBR repository name.  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, next creates the protection group and adds the specified agent targets and finally creates a backup job for the protection group.
+* Sample workflows are located in the "Sample Workflows" folder of this repository and should be downloaded and imported via the Intersight web console.  Note that orchestration workflow tasks are embedded in the workflows and will also populate new Intersight tasks concurrent with the workflow import. Two workflows are provided for reference -
+  * **VBR - Deploy Agents:** Takes inputs of target VBR server, IP addresses or DNS names for agent targets, agent target credentials (one set), OS platform (Windows or Linux), protection group name, protection group description, backup job name and VBR repository name.  This workflow checks for the existence of the agent credentials in the VBR database and adds them if they do not exist, next creates the protection group and adds the specified agent targets and finally creates a backup job for the protection group.
   * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 Operation:
-* Creating custom tasks - samples provide a template
+* The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may of course be created. For instance to extend the "VBR Add Managed Server v1.0" task to include ESXi / vCenter host additions the "VBR - Add Managed Server v1.0" task Powershell script could be updated from -
+  * ```
+            Switch ({{.global.task.input.hostplatform}}) {
+                0 {
+                    Write-Output "Adding windows host"
+                    Add-VBRWinServer -Name "{{.global.task.input.servername}}" -Credentials $cred
+                    }
+                1 {        
+                    Write-Output "Adding linux host"
+                    Add-VBRLinux -Name "{{.global.task.input.servername}}" -Credentials $cred -confirm:$False
+                    }
+            }```
+
+
+![v1.0 Powershell](images/RestorePointSelection.png)
 * Creating custom workflows - if creating custom workflows from sample task be sure to match expected reference names i.e.
 
 ## ✍ Contributions
