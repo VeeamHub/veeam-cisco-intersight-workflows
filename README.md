@@ -46,7 +46,7 @@ Operation:
                     Add-VBRLinux -Name "{{.global.task.input.servername}}" -Credentials $cred -confirm:$False
                     }
             }
-```
+  ```
 to -
 
   * ```
@@ -64,7 +64,7 @@ to -
                     Add-VBRvCenter -Name "{{.global.task.input.servername}}" -Credentials $cred
                     }
             }
-```
+  ```
 
 ![v1.0 Powershell](images/RestorePointSelection.png)
 * Creating custom workflows - if creating custom workflows from sample task be sure to match expected reference names i.e.
