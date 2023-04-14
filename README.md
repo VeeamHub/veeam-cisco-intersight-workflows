@@ -35,8 +35,7 @@ Setup:
 
 Operation:
 * The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may of course be created. For instance to extend the "VBR Add Managed Server v1.0" task to include ESXi / vCenter host additions the "VBR - Add Managed Server v1.0" task Powershell script could be updated from -
-  *
-```
+  * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
                     Write-Output "Adding windows host"
