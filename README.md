@@ -48,9 +48,8 @@ Operation:
             }
   ```
 
-to -
+* to -
 
-*
    * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
