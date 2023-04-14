@@ -34,7 +34,7 @@ Setup:
   * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 Operation:
-* The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may of course be created. For instance to extend the "VBR Add Managed Server v1.0" task to include ESXi / vCenter host additions the "VBR - Add Managed Server v1.0" task Powershell script could be updated from -
+* The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may of course be created. For instance to extend the "VBR Add Managed Server v1.0" task to include vCenter host additions the "VBR - Add Managed Server v1.0" task Powershell script could be updated from -
   * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
@@ -47,7 +47,24 @@ Operation:
                     }
             }
 ```
+to -
 
+  * ```
+            Switch ({{.global.task.input.hostplatform}}) {
+                0 {
+                    Write-Output "Adding windows host"
+                    Add-VBRWinServer -Name "{{.global.task.input.servername}}" -Credentials $cred
+                    }
+                1 {        
+                    Write-Output "Adding linux host"
+                    Add-VBRLinux -Name "{{.global.task.input.servername}}" -Credentials $cred -confirm:$False
+                    }
+                2 {        
+                    Write-Output "Adding VMware host"
+                    Add-VBRvCenter -Name "{{.global.task.input.servername}}" -Credentials $cred
+                    }
+            }
+```
 
 ![v1.0 Powershell](images/RestorePointSelection.png)
 * Creating custom workflows - if creating custom workflows from sample task be sure to match expected reference names i.e.
