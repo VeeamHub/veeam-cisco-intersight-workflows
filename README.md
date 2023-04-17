@@ -1,7 +1,7 @@
 # Cisco Intersight Orchestration Sample Veeam Backup & Replication Workflows
 
 ## VeeamHub
-Veeamhub projects are community driven projects, and are not created by Veeam R&D nor validated by Veeam Q&A. They are maintained by community members which might be or not be Veeam employees. 
+Veeamhub projects are community driven projects, and are ~~not~~ sometimes :wink: created by Veeam R&D nor validated by Veeam Q&A. They are maintained by community members which might be or not be Veeam employees. 
 
 ## Distributed under MIT license
 Copyright (c) 2023 VeeamHub
@@ -89,7 +89,7 @@ And add the new enumeration type for vCenter -
 ![Task Properties](Images/WorkflowInputsEnumModification.png 	)
 
 
-**Creating a custom workflow -** To create a custom workflow from existing tasks simply select "Create Workflow" from the workflows space -
+**Operation: Creating a custom workflow -** To create a custom workflow from existing tasks simply select "Create Workflow" from the workflows space -
 
 ![Task Properties](Images/CreateWorkflow.png)
 
