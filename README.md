@@ -68,15 +68,15 @@ Operation:
   ```
 Via selecting the Powershell executor task step, properties, inputs and script -
 
-![Task Script Editor](images/Edit Task Script.png)
+![Task Script Editor](images/EditTaskScript.png)
 
 Next since an enumeration type is defined for the managed server OS platform in our example the task properties must be extended to include the new vCenter type matching the modiefied Powershell script via -
 
-![Task Properties](images/Task Inputs.png)
+![Task Properties](images/TaskInputs.png)
 
 Select the edit icon for the "Host Platform" input and add an entry for vCenter-
 
-![Task Properties](images/Add vCenter Enum to Task.png)
+![Task Properties](images/AddvCenterEnumtoTask.png)
 
 
 * Creating custom workflows - if creating custom workflows from sample task be sure to match expected reference names i.e.
