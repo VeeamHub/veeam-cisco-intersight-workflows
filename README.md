@@ -78,6 +78,13 @@ Select the edit icon for the "Host Platform" input and add an entry for vCenter-
 
 ![Task Properties](Images/AddvCenterEnumtoTask.png)
 
+Finally modify the workflow(s) leveraging the add managed server task to reflect the added platform enumeration type by selecting the worflow input mapped to the server OS platform (in this case "Host Platform") -
+
+![Task Properties](Images/WorkflowInputsModification.png)
+
+And add the new enumeration type for vCenter -
+
+![Task Properties](Images/WorkflowInputsEnumModification.png)
 
 * Creating custom workflows - if creating custom workflows from sample task be sure to match expected reference names i.e.
 
