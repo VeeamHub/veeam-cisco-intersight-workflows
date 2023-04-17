@@ -34,7 +34,7 @@ Setup:
   * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 Operation:
-* Modify an existing workflow - The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may be created from scratch. For illustrative purposes, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
+* **Modify an existing workflow - The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may be created from scratch. For illustrative purposes, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
   * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
@@ -69,6 +69,8 @@ Operation:
 Via selecting the Powershell executor task step, properties, inputs and script -
 
 ![Task Script Editor](Images/EditTaskScript.png)
+
+![Task Script Editor](Images/TaskEditScriptBody.png)
 
 Next since an enumeration type is defined for the managed server OS platform in our example the task properties must be extended to include the new vCenter type matching the modiefied Powershell script via -
 
