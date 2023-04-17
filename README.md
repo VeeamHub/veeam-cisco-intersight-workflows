@@ -13,7 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Project Overview
-**Author:** Ronn Martin (ronn.martin@veeam.com), Mark Polin (mark.polin@veeam.com)
+**Authors:** Ronn Martin (ronn.martin@veeam.com), Mark Polin (mark.polin@veeam.com)
 
 **Description:** This repository contains sample Powershell-based workflows designed for use with Cisco Intersight Orchestration and Veeam Backup & Replication v11+.
 
@@ -34,8 +34,8 @@ Cisco Intersight Orchestration simplifies orchestration and automation for infra
   * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 **Operation:**
-* **Modify an existing workflow - The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may be created from scratch. For illustrative purposes, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
-  * ```
+**Modify an existing workflow -** The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may be created from scratch. For illustrative purposes, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
+  ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
                     Write-Output "Adding windows host"
@@ -48,9 +48,9 @@ Cisco Intersight Orchestration simplifies orchestration and automation for infra
             }
   ```
 
-* to -
+To -
 
-   * ```
+  ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
                     Write-Output "Adding windows host"
@@ -89,27 +89,27 @@ And add the new enumeration type for vCenter -
 ![Task Properties](Images/WorkflowInputsEnumModification.png 	)
 
 
-* Creating a custom workflow - To create a custom workflow from existing tasks simply select "Create Workflow" from the workflows space -
+**Creating a custom workflow -** To create a custom workflow from existing tasks simply select "Create Workflow" from the workflows space -
 
 ![Task Properties](Images/CreateWorkflow.png)
 
-  * Name the workflow and then select the "Designer" tab.  Add and choose execution order for required tasks by dragging and dropping from the task palette -
+Name the workflow and then select the "Designer" tab.  Add and choose execution order for required tasks by dragging and dropping from the task palette -
 
 ![Task Properties](Images/AddWorkflowTasks.png)
 
-  * For each task input, create or select a mapping to a workflow input
+For each task input, create or select a mapping to a workflow input
 
 ![Task Properties](Images/MapWorkflowInputs.png)
 
-  * Static (hardcoded) inputs can be established by selecting "Map" and "Static Value" which is set at workflow design time -
+Static (hardcoded) inputs can be established by selecting "Map" and "Static Value" which is set at workflow design time -
 
 ![Task Properties](Images/MapStaticInput.png)
 
-  * Dynamic (user prompt at workflow runtime) inputs can be defined via "Direct Mapping". In the case below no workflow inputs have yet been defined so "Add Workflow Input" is selected -
+Dynamic (user prompt at workflow runtime) inputs can be defined via "Direct Mapping". In the case below no workflow inputs have yet been defined so "Add Workflow Input" is selected -
 
 ![Task Properties](Images/MapDynamicInput.png)
 
-  * By default the new workflow input will inherit the same name, reference name, description and type defined in the underlying task input.  All these may be modified for the workflow save for type which has to match the task defined type.
+By default the new workflow input will inherit the same name, reference name, description and type defined in the underlying task input.  All these may be modified for the workflow save for type which has to match the task defined type.
 
 ![Task Properties](Images/MapDynamicInputType.png)
 
