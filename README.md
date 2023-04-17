@@ -23,7 +23,7 @@ Cisco Intersight Orchestration simplifies orchestration and automation for infra
 
 Prerequisites: 
 * Veeam Backup & Replication (VBR) server instance(s), v11+
-* Cisco Intersight Assist - on-premises Cisco server which enables visibility of datacenter endpoint devices for the Cisco Intersight Orchestration service. Cisco Intersight Assist is available as a virtual appliance (OVA) for installation on VMware ESXi. For more information, see the [Cisco Intersight Virtual Appliance Getting Started Guide](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-overview-of-cisco-intersight-assist.html). Virtual appliance installation steps can be found at [Installing Cisco Intersight using VMware vSphere Web Client](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-installing-cisco-intersight-assist.html) DO NOT ignore the DNS setup steps.
+* Cisco Intersight Assist - on-premises Cisco server which enables visibility of datacenter endpoint devices for the Cisco Intersight Orchestration cloud-based service. Cisco Intersight Assist is available as a virtual appliance (OVA) for installation on VMware ESXi. For more information, see the [Cisco Intersight Virtual Appliance Getting Started Guide](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-overview-of-cisco-intersight-assist.html). Virtual appliance installation steps can be found at [Installing Cisco Intersight using VMware vSphere Web Client](https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/cisco-intersight-assist-getting-started-guide/m-installing-cisco-intersight-assist.html) DO NOT ignore the DNS setup steps.
 
 Setup: 
 * Once Cisco Intersight Assist has been deployed and configured it can be by claimed by the Intersight cloud service per the procedure documented at - [Target Claim for Compute/Fabric, Hyperconverged, Orchestrator, and Platform Services Targets](https://www.intersight.com/help/saas/getting_started/claim_targets#minimum_permissions_for_targets).  
@@ -34,7 +34,7 @@ Setup:
   * **VBR - Deploy Proxy:** Takes inputs of target VBR server, IP address or DNS name for targeted proxy host, target proxy host credentials, OS platform (Windows or Linux) and the proxy type to deploy (VMware, Hyper-V, CDP, NAS, etc.).  This workflow checks for the existence of the agent crendentials in the VBR database and adds them if they do not exist, adds the targeted host as a VBR managed server and finally assigns the appropriate proxy role to the server.
 
 Operation:
-* Modify an existing workflow - The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may of course be created. For purposes of illustration, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
+* Modify an existing workflow - The sample workflows should operate correctly without modification but of course only address two narrow use cases.  The orchestration tasks which are populated with the workflow import can be freely modified or new tasks may be created from scratch. For illustrative purposes, to extend the "VBR Add Managed Server v1.0" task to also allow vCenter host additions the "VBR - Add Managed Server v1.0" task attached Powershell script could be updated from -
   * ```
             Switch ({{.global.task.input.hostplatform}}) {
                 0 {
@@ -99,7 +99,7 @@ And add the new enumeration type for vCenter -
 
 ![Task Properties](Images/MapWorkflowInputs.png)
 
-  * Static (hardcoded) inputs can be established by selecting -
+  * Static (hardcoded) inputs can be established by selecting "Map" and "Static Value" which is set at workflow design time -
 
 ![Task Properties](Images/MapStaticInput.png)
 
