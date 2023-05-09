@@ -16,7 +16,7 @@
             "Default": {
               "ObjectType": "workflow.DefaultValue"
             },
-            "Description": "The PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
+            "Description": "The VBR PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
             "DisplayMeta": {
               "InventorySelector": true,
               "ObjectType": "workflow.DisplayMeta",
