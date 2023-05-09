@@ -1,0 +1,983 @@
+[
+  {
+    "Body": {
+      "ClassId": "workflow.TaskDefinition",
+      "DefaultVersion": true,
+      "Label": "VBR - Add Managed Server v1.0",
+      "Name": "VBR-AddManagedServerv1.0",
+      "ObjectType": "workflow.TaskDefinition",
+      "Properties": {
+        "InputDefinition": [
+          {
+            "CustomDataTypeProperties": {
+              "CatalogMoid": "shared",
+              "ObjectType": "workflow.CustomDataProperty"
+            },
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "The PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "Dropdown"
+            },
+            "Label": "External Target",
+            "Name": "Target",
+            "ObjectType": "workflow.TargetDataType",
+            "Properties": [
+              {
+                "DisplayAttributes": [
+                  "Name",
+                  "TargetType"
+                ],
+                "ObjectType": "workflow.TargetProperty",
+                "Selector": "/api/v1/asset/Targets?$filter=(TargetType eq PowerShellEndpoint and Status eq Connected)",
+                "SelectorProperty": {
+                  "Method": "GET",
+                  "ObjectType": "workflow.SelectorProperty"
+                },
+                "SupportedObjects": [
+                  "asset.Target"
+                ]
+              }
+            ],
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "Veeam-managed server to add",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Server Name",
+            "Name": "servername",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Host Platform",
+            "Name": "hostplatform",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                  {
+                    "Label": "Windows",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "0"
+                  },
+                  {
+                    "Label": "Linux",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "1"
+                  }
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "enum"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "User Name",
+            "Name": "username",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Credential Description",
+            "Name": "credentialdesc",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          }
+        ],
+        "ObjectType": "workflow.Properties",
+        "OutputDefinition": [
+        ],
+        "RetryCount": 3,
+        "RetryDelay": 60,
+        "RetryPolicy": "Fixed",
+        "SupportStatus": "Supported",
+        "Timeout": 300,
+        "TimeoutPolicy": "Timeout"
+      },
+      "RollbackTasks": [
+      ],
+      "SharedScope": "user",
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/TaskDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "ClassId": "workflow.TaskDefinition",
+      "DefaultVersion": true,
+      "Label": "VBR - Add Proxy v1.0",
+      "Name": "VBR-AddProxyv1.0",
+      "ObjectType": "workflow.TaskDefinition",
+      "Properties": {
+        "InputDefinition": [
+          {
+            "CustomDataTypeProperties": {
+              "CatalogMoid": "shared",
+              "ObjectType": "workflow.CustomDataProperty"
+            },
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "The PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "Dropdown"
+            },
+            "Label": "External Target",
+            "Name": "Target",
+            "ObjectType": "workflow.TargetDataType",
+            "Properties": [
+              {
+                "DisplayAttributes": [
+                  "Name",
+                  "TargetType"
+                ],
+                "ObjectType": "workflow.TargetProperty",
+                "Selector": "/api/v1/asset/Targets?$filter=(TargetType eq PowerShellEndpoint and Status eq Connected)",
+                "SelectorProperty": {
+                  "Method": "GET",
+                  "ObjectType": "workflow.SelectorProperty"
+                },
+                "SupportedObjects": [
+                  "asset.Target"
+                ]
+              }
+            ],
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "Veeam-managed server to add",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Server Name",
+            "Name": "servername",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Proxy Type",
+            "Name": "proxytype",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                  {
+                    "Label": "VMware",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "0"
+                  },
+                  {
+                    "Label": "Hyper-V",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "1"
+                  },
+                  {
+                    "Label": "NAS Filer",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "2"
+                  },
+                  {
+                    "Label": "CDP",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "3"
+                  },
+                  {
+                    "Label": "Linux",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "4"
+                  },
+                  {
+                    "Label": "Computer File Server",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "5"
+                  }
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "enum"
+            },
+            "Required": true
+          }
+        ],
+        "ObjectType": "workflow.Properties",
+        "OutputDefinition": [
+        ],
+        "RetryCount": 3,
+        "RetryDelay": 60,
+        "RetryPolicy": "Fixed",
+        "SupportStatus": "Supported",
+        "Timeout": 300,
+        "TimeoutPolicy": "Timeout"
+      },
+      "RollbackTasks": [
+      ],
+      "SharedScope": "user",
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/TaskDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "ClassId": "workflow.TaskDefinition",
+      "DefaultVersion": true,
+      "Label": "VBR - Credential Check v1.0",
+      "Name": "VBR-CredentialCheckv1.0",
+      "ObjectType": "workflow.TaskDefinition",
+      "Properties": {
+        "InputDefinition": [
+          {
+            "CustomDataTypeProperties": {
+              "CatalogMoid": "shared",
+              "ObjectType": "workflow.CustomDataProperty"
+            },
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "The PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "Dropdown"
+            },
+            "Label": "External Target",
+            "Name": "Target",
+            "ObjectType": "workflow.TargetDataType",
+            "Properties": [
+              {
+                "DisplayAttributes": [
+                  "Name",
+                  "TargetType"
+                ],
+                "ObjectType": "workflow.TargetProperty",
+                "Selector": "/api/v1/asset/Targets?$filter=(TargetType eq PowerShellEndpoint and Status eq Connected)",
+                "SelectorProperty": {
+                  "Method": "GET",
+                  "ObjectType": "workflow.SelectorProperty"
+                },
+                "SupportedObjects": [
+                  "asset.Target"
+                ]
+              }
+            ],
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "User Credential Description",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "User Description",
+            "Name": "userdescription",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "Administrative User",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "User Name",
+            "Name": "username",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "Description": "Admin password",
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Password",
+            "Name": "userpassword",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            },
+            "Required": true
+          },
+          {
+            "Default": {
+              "ObjectType": "workflow.DefaultValue"
+            },
+            "DisplayMeta": {
+              "InventorySelector": true,
+              "ObjectType": "workflow.DisplayMeta",
+              "WidgetType": "None"
+            },
+            "Label": "Account Type",
+            "Name": "accounttype",
+            "ObjectType": "workflow.PrimitiveDataType",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [
+                  {
+                    "Label": "Windows Credentials",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "Windows"
+                  },
+                  {
+                    "Label": "Linux Credentials",
+                    "ObjectType": "workflow.EnumEntry",
+                    "Value": "Linux"
+                  }
+                ],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [
+              ],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "enum"
+            },
+            "Required": true
+          }
+        ],
+        "ObjectType": "workflow.Properties",
+        "OutputDefinition": [
+        ],
+        "RetryCount": 3,
+        "RetryDelay": 60,
+        "RetryPolicy": "Fixed",
+        "SupportStatus": "Supported",
+        "Timeout": 60,
+        "TimeoutPolicy": "Timeout"
+      },
+      "RollbackTasks": [
+      ],
+      "SharedScope": "user",
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/TaskDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "ClassId": "workflow.WorkflowDefinition",
+      "DefaultVersion": true,
+      "InputDefinition": [
+        {
+          "CustomDataTypeProperties": {
+            "CatalogMoid": "shared",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "The PowerShell endpoint on which the script is to be executed. PowerShell Remoting must be enabled on the endpoint to allow for scripts to be executed remotely.\n",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "Dropdown"
+          },
+          "Label": "External VBR Target",
+          "Name": "Target",
+          "ObjectType": "workflow.TargetDataType",
+          "Properties": [
+            {
+              "DisplayAttributes": [
+                "Name",
+                "TargetType"
+              ],
+              "ObjectType": "workflow.TargetProperty",
+              "Selector": "/api/v1/asset/Targets?$filter=(TargetType eq PowerShellEndpoint and Status eq Connected)",
+              "SelectorProperty": {
+                "Method": "GET",
+                "ObjectType": "workflow.SelectorProperty"
+              },
+              "SupportedObjects": [
+                "asset.Target"
+              ]
+            }
+          ],
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Target Host Username",
+          "Name": "targetusername",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Target Host Password",
+          "Name": "targetpassword",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Credential Description",
+          "Name": "credentialdesc",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Target Address",
+          "Name": "targetaddress",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Proxy Type",
+          "Name": "proxytype",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+                {
+                  "Label": "VMware",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "0"
+                },
+                {
+                  "Label": "VMware Linux",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "1"
+                },
+                {
+                  "Label": "Hyper-V",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "2"
+                },
+                {
+                  "Label": "NAS",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "3"
+                },
+                {
+                  "Label": "CDP",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "4"
+                },
+                {
+                  "Label": "Computer File Server",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "5"
+                }
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "enum"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "OS Type",
+          "Name": "ostype",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+                {
+                  "Label": "Win",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "0"
+                },
+                {
+                  "Label": "Lin",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "1"
+                }
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "enum"
+          },
+          "Required": true
+        }
+      ],
+      "InputParameterSet": [
+      ],
+      "Label": "VBR - Deploy Proxy",
+      "Name": "VBRDeployProxy",
+      "ObjectType": "workflow.WorkflowDefinition",
+      "OutputDefinition": [
+      ],
+      "Properties": {
+        "EnableDebug": true,
+        "ObjectType": "workflow.WorkflowProperties",
+        "SupportStatus": "Supported"
+      },
+      "SharedScope": "user",
+      "Tasks": [
+        {
+          "Name": "StartTask",
+          "NextTask": "VBRCredentialCheckv101",
+          "ObjectType": "workflow.StartTask"
+        },
+        {
+          "CatalogMoid": "user",
+          "InputParameters": {
+            "Target": "${workflow.input.Target}",
+            "credentialdesc": "${workflow.input.credentialdesc}",
+            "hostplatform": "${workflow.input.ostype}",
+            "servername": "${workflow.input.targetaddress}",
+            "username": "${workflow.input.targetusername}"
+          },
+          "Label": "VBR - Add Managed Server v1.0",
+          "Name": "VBRAddManagedServerv101",
+          "ObjectType": "workflow.WorkerTask",
+          "OnSuccess": "VBRAddProxyv101",
+          "TaskDefinitionName": "VBR-AddManagedServerv1.0",
+          "Version": 1
+        },
+        {
+          "CatalogMoid": "user",
+          "InputParameters": {
+            "Target": "${workflow.input.Target}",
+            "proxytype": "${workflow.input.proxytype}",
+            "servername": "${workflow.input.targetaddress}"
+          },
+          "Label": "VBR - Add Proxy v1.0",
+          "Name": "VBRAddProxyv101",
+          "ObjectType": "workflow.WorkerTask",
+          "OnSuccess": "SuccessEndTask",
+          "TaskDefinitionName": "VBR-AddProxyv1.0",
+          "Version": 1
+        },
+        {
+          "Name": "SuccessEndTask",
+          "ObjectType": "workflow.SuccessEndTask"
+        },
+        {
+          "Name": "FailureEndTask",
+          "ObjectType": "workflow.FailureEndTask"
+        },
+        {
+          "CatalogMoid": "user",
+          "InputParameters": {
+            "Target": "${workflow.input.Target}",
+            "accounttype": "${workflow.input.ostype}",
+            "userdescription": "${workflow.input.credentialdesc}",
+            "username": "${workflow.input.targetusername}",
+            "userpassword": "${workflow.input.targetpassword}"
+          },
+          "Label": "VBR - Credential Check v1.0",
+          "Name": "VBRCredentialCheckv101",
+          "ObjectType": "workflow.WorkerTask",
+          "OnSuccess": "VBRAddManagedServerv101",
+          "TaskDefinitionName": "VBR-CredentialCheckv1.0",
+          "Version": 1
+        }
+      ],
+      "UiInputFilters": [
+      ],
+      "UiRenderingData": {
+        "Positions": [
+          {
+            "Name": "StartTask",
+            "X": 372.31191522,
+            "Y": 155.553648025
+          },
+          {
+            "Name": "VBRAddManagedServerv101",
+            "X": 287.46484637,
+            "Y": 365.253183295
+          },
+          {
+            "Name": "VBRAddProxyv101",
+            "X": 287.46484637,
+            "Y": 463.076862675
+          },
+          {
+            "Name": "SuccessEndTask",
+            "X": 372.31191522,
+            "Y": 561.8987428649999
+          },
+          {
+            "Name": "FailureEndTask",
+            "X": 515.0546310499999,
+            "Y": 561.8987428649999
+          },
+          {
+            "Name": "VBRCredentialCheckv101",
+            "X": 302,
+            "Y": 246
+          }
+        ]
+      },
+      "VariableDefinition": [
+      ],
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/WorkflowDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "Batch": [
+        {
+          "Body": "#\r\n# Add a new managed server to VBR with the pre-existing credentials (indexed by username and\r\n# user description).  If the managed server already exists or if the specified credentials\r\n# do not exist an error is returned otherwise the new managed server is created per the \r\n# platform (Windows, Linux) specified.\r\n#\r\n# Inputs: workflow inputs with references \"servername\", existing managed credentials\r\n# referenced by \"username\" and  \"userdescription\" and \"hostplatform\" (0 - Windows, 1 - Linux)\r\n#\r\ntry {\r\n    $managedServer = Get-VBRServer -Name \"{{.global.task.input.servername}}\"\r\n    if ($managedServer -EQ $null) {\r\n        $cred = Get-VBRCredentials | Where-Object {$_.Description -eq \"{{.global.task.input.credentialdesc}}\" -and $_.Name -eq \"{{.global.task.input.username}}\"}\r\n        if ($cred -ne $null) {\r\n            Switch ({{.global.task.input.hostplatform}}) {\r\n                0 {\r\n                    Write-Output \"Adding windows host\"\r\n                    Add-VBRWinServer -Name \"{{.global.task.input.servername}}\" -Credentials $cred\r\n                    }\r\n                1 {        \r\n                    Write-Output \"Adding linux host\"\r\n                    Add-VBRLinux -Name \"{{.global.task.input.servername}}\" -Credentials $cred -confirm:$False\r\n                    }\r\n            }\r\n        }\r\n        else {\r\n            Write-Error -Message \"Credentials not found!\"\r\n            exit 1\r\n        }\r\n    }\r\n    else {\r\n        Write-Error -Message \"Managed server already exists\"\r\n        exit 0\r\n    }\r\n    exit 0\r\n}\r\ncatch { \r\n    Write-Output \"Exception in add managed server\" \r\n    exit 1 \r\n}",
+          "ContentType": "json",
+          "Description": "Add managed Linux or Windows host to VBR",
+          "Label": "VBR Add Managed Server",
+          "Name": "InvokePowerShellScript1",
+          "ObjectType": "workflow.PowerShellApi",
+          "OperationTimeout": "300",
+          "Outcomes": [
+          ],
+          "PowerShellResponseSpec": {
+            "Parameters": [
+            ]
+          }
+        }
+      ],
+      "CancelAction": [
+      ],
+      "ClassId": "workflow.PowerShellBatchApiExecutor",
+      "Constraints": {
+        "ObjectType": "workflow.TaskConstraints"
+      },
+      "Name": "VBR - Add Managed Server v1.0",
+      "ObjectType": "workflow.PowerShellBatchApiExecutor",
+      "Output": {
+      },
+      "SharedScope": "user",
+      "TaskDefinition": {
+        "ObjectType": "workflow.TaskDefinition",
+        "Selector": "Name eq \"VBR-AddManagedServerv1.0\" and Version eq 1"
+      }
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/PowerShellBatchApiExecutors",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "Batch": [
+        {
+          "Body": "#\r\n# Add a new proxy from an existing managed server to VBR.  If the managed server does not\r\n# already exist an error is returned otherwise the managed server is assigned the specified\r\n# proxy type role assuming it is appropriate to the platform (i.e. no Linux support for \r\n# Hyper-V proxy).\r\n#\r\n# Inputs: workflow inputs with references \"servername\" and \"proxytype\" (0 - VMware/Windows,\r\n# 1 - VMware/Linux, 2 - HyperV, 3 - NAS, 4 - CDP, 5 - Computer)\r\ntry {\r\n    $managedServer = Get-VBRServer -Name {{.global.task.input.servername}}\r\n    if ($managedServer -NE $null) {\r\n        Switch ({{.global.task.input.proxytype}}) {\r\n            0   {\r\n                Write-Host \"Adding Windows VMWare proxy\"\r\n                Add-VBRViProxy -Server {{.global.task.input.servername}}\r\n                }\r\n            1   {\r\n                Write-Host \"Adding Linux VMWare proxy\"\r\n                Add-VBRViLinuxProxy -Server {{.global.task.input.servername}}\r\n                }\r\n            2   {\r\n                Write-Host \"Adding HyperV proxy\"\r\n                Add-VBRHvProxy -Server {{.global.task.input.servername}}\r\n                }\r\n            3   {\r\n                Write-Host \"Adding NAS proxy\"\r\n                Add-VBRNASProxyServer -Server {{.global.task.input.servername}}\r\n                }\r\n            4   {\r\n                Write-Host \"Adding CDP proxy\"\r\n                Add-VBRCDPProxy -Server {{.global.task.input.servername}}\r\n                }                \r\n            5   {\r\n                Write-Host \"Adding Computer proxy\"\r\n                Add-VBRComputerFileProxyServer -Server {{.global.task.input.servername}}\r\n                }\r\n           default {\r\n                Write-Host \"Proxy type not supported!\"\r\n                exit 1\r\n            }\r\n        }\r\n        exit 0 \r\n    }\r\n    else {\r\n        Write-Output \"Managed server not found!\"\r\n        exit 0\r\n    }\r\n}\r\ncatch {\r\n    Write-Output \"Exception in add proxy\"\r\n    exit 1\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+          "ContentType": "json",
+          "Description": "Add VBR proxy ",
+          "Label": "Add VBR Proxy",
+          "Name": "InvokePowerShellScript1",
+          "ObjectType": "workflow.PowerShellApi",
+          "OperationTimeout": "300",
+          "Outcomes": [
+          ],
+          "PowerShellResponseSpec": {
+            "Parameters": [
+            ]
+          }
+        }
+      ],
+      "CancelAction": [
+      ],
+      "ClassId": "workflow.PowerShellBatchApiExecutor",
+      "Constraints": {
+        "ObjectType": "workflow.TaskConstraints"
+      },
+      "Name": "VBR - Add Proxy v1.0",
+      "ObjectType": "workflow.PowerShellBatchApiExecutor",
+      "Output": {
+      },
+      "SharedScope": "user",
+      "TaskDefinition": {
+        "ObjectType": "workflow.TaskDefinition",
+        "Selector": "Name eq \"VBR-AddProxyv1.0\" and Version eq 1"
+      }
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/PowerShellBatchApiExecutors",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "Batch": [
+        {
+          "Body": "#\r\n# Search VBR managed credentials for a matching username / user description. If found return\r\n# true otherwise create a new set of credentials and return true if the credentials were \r\n# successfully created.\r\n#\r\n# Inputs: workflow inputs with referenced inputs \"username\", \"userdescription\", \"userpassword\"\r\n# and \"accounttype\" (0 - \"Windows\" default or 1 - \"Linux\")\r\n#\r\ntry {\r\n    $cred = Get-VBRCredentials | Where-Object {$_.Description -eq \"{{.global.task.input.userdescription}}\" -and $_.Name -eq \"{{.global.task.input.username}}\"}\r\n    if ($cred -EQ $null) {\r\n        if ({{.global.task.input.accounttype}} -EQ 1) {\r\n            $cred = Add-VBRCredentials -User \"{{.global.task.input.username}}\" -Password \"{{.global.task.input.userpassword}}\" -Description \"{{.global.task.input.userdescription}}\" -Type \"Linux\" -ElevateToRoot\r\n        }\r\n        else {\r\n            $cred = Add-VBRCredentials -User \"{{.global.task.input.username}}\" -Password \"{{.global.task.input.userpassword}}\" -Description \"{{.global.task.input.userdescription}}\" -Type \"Windows\"\r\n        }\r\n        if ($cred -EQ $null) { exit 1 }\r\n    }\r\n    exit 0\r\n}\r\ncatch { exit 1 }",
+          "ContentType": "json",
+          "Description": "Check for existence of credential.  If does not exist then add to VBR credential database.",
+          "Label": "VBR - Credential Check",
+          "Name": "InvokePowerShellScript1",
+          "ObjectType": "workflow.PowerShellApi",
+          "OperationTimeout": "60",
+          "Outcomes": [
+          ],
+          "PowerShellResponseSpec": {
+            "Parameters": [
+            ]
+          }
+        }
+      ],
+      "CancelAction": [
+      ],
+      "ClassId": "workflow.PowerShellBatchApiExecutor",
+      "Constraints": {
+        "ObjectType": "workflow.TaskConstraints"
+      },
+      "Name": "VBR - Credential Check v1.0",
+      "ObjectType": "workflow.PowerShellBatchApiExecutor",
+      "Output": {
+      },
+      "SharedScope": "user",
+      "TaskDefinition": {
+        "ObjectType": "workflow.TaskDefinition",
+        "Selector": "Name eq \"VBR-CredentialCheckv1.0\" and Version eq 1"
+      }
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/PowerShellBatchApiExecutors",
+    "Verb": "POST"
+  }
+]
